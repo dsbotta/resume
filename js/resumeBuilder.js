@@ -1,7 +1,6 @@
 
-$("#header").prepend(HTMLheaderRole.replace("%data%", "Web Developer"));
-$("#header").prepend(HTMLheaderName.replace("%data%", "Daniel Botta"));
-
+// $("#header").prepend(HTMLheaderRole.replace("%data%", "Web Developer"));
+// $("#header").prepend(HTMLheaderName.replace("%data%", "Daniel Botta"));
 
 /** OBJECTS **/
 var bio = {
@@ -11,11 +10,11 @@ var bio = {
 		"mobile": "757-677-6922",
 		"email": "daniel.s.botta@gmail.com",
 		"github": "dsbotta",
-		"location": "Washington DC US"
+		"location": "Alexandria VA US"
 	},
 	"welcome": "Hello! This is my practice resume for your viewing. I would love the opportunity to work for your company",
 	"skills": ["HTML", "CSS", "JavaScript", "Jquery", "JSON", "PHP", "Python", "Java"],
-	"bioPic": "images/fry.jpg"
+	"bioPic": "images/me.jpg"
 };
 
 var education = {
@@ -90,6 +89,26 @@ var work = {
 	]
 };
 
+var displayBio = function() {
+		formattedRole = HTMLheaderRole.replace("%data%", bio.role);
+		$("#header").prepend(formattedRole);
+		formattedName = HTMLheaderName.replace("%data%", bio.name);
+		$("#header").prepend(formattedName);
+		formattedMobile = HTMLmobile.replace("%data%", bio.contact.mobile);
+		$("#topContacts").append(formattedMobile);
+		formattedEmail = HTMLemail.replace("%data%", bio.contact.email);
+		$("#topContacts").append(formattedEmail);
+		formattedGitHub = HTMLgithub.replace("%data%", bio.contact.github);
+		$("#topContacts").append(formattedGitHub);
+		formattedLocation = HTMLlocation.replace("%data%", bio.contact.location);
+		$("#topContacts").append(formattedLocation);
+		formattedPic = HTMLbioPic.replace("%data%", bio.bioPic);
+		$("#header").append(formattedPic);
+};
+displayBio();
+
+
+
 /** Display BIO **/
 if (bio.skills.length > 0) {
 	$("#header").append(HTMLskillsStart);
@@ -156,7 +175,7 @@ function inName(name) {
 	name[1] = name[1].toUpperCase();
 	name[0] = name[0].slice(0,1).toUpperCase() + name[0].slice(1).toLowerCase().dates;
 	return name[0] +" "+name[1];
-}
+};
 $("#main").append(internationalizeButton);
 
 
