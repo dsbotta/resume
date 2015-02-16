@@ -12,8 +12,8 @@ var bio = {
 		"github": "dsbotta",
 		"location": "Alexandria VA US"
 	},
-	"welcome": "Hello! This is my practice resume for your viewing. I would love the opportunity to work for your company",
-	"skills": ["HTML", "CSS", "JavaScript", "Jquery", "JSON", "PHP", "Python", "Java"],
+	"welcome": "Hello! This is my practice resume for your viewing. I would love the opportunity to work for your company!",
+	"skills": ["HTML", "CSS", "JavaScript", "Jquery", "JSON"],
 	"bioPic": "images/me.jpg"
 };
 
@@ -21,33 +21,33 @@ var education = {
 	"schools": {
 		"name": "Liberty University",
 		"city": "Lynchburg VA US",
-		"gradYear": "2013",
+		"dates": "2009-2013",
 		"degree": "BA",
 		"major": "Exercise Science"
 		},
 "onlineCourses":	[
 		{
-		"website": "Udacity.com",
-		"courses": ["Front-End Web Developer Nano Degree", "Git/GitHub", "JavaScript Syntax"],
+		"title": "Front-End Web Developer Nano Degree",
+		"school": "Udacity.com",
 		"dates": "2015",
 		"url": "https://www.udacity.com"
 		},
 		{
-		"website": "Treehouse.com",
-		"courses": ["Intro to CSS", "JavaScript Basics", "Intro to JavaScript"],
+		"title": "Intro to JavaScript",
+		"school": "Treehouse.com",
 		"dates": "2015",
 		"url": "http://teamtreehouse.com/"	
 		},
 		{
-		"website": "CodeAcademy.com",
-		"courses": ["Intro to HTML", "Intro to CSS", "Intro to PHP"],
+		"title": "Intro to PHP",
+		"school": "CodeAcademy.com",
 		"dates": "2015",
 		"url": "http://codeacademy.com/"	
 		}
 	]	
 };
 
-var projects = {
+var projects = {	
 	"project": [
 		{
 		"title": "COHO Fitness Center Website",
@@ -67,7 +67,7 @@ var projects = {
 			"http://placehold.it/300x300"
 			]
 		}
-	]	
+	]
 };
 
 var work = {
@@ -94,6 +94,8 @@ var displayBio = function() {
 		$("#header").prepend(formattedRole);
 		formattedName = HTMLheaderName.replace("%data%", bio.name);
 		$("#header").prepend(formattedName);
+		formattedWelcome = HTMLWelcomeMsg.replace("%data%", bio.welcome);
+		$("#header").append(formattedWelcome);
 		formattedMobile = HTMLmobile.replace("%data%", bio.contact.mobile);
 		$("#topContacts").append(formattedMobile);
 		formattedEmail = HTMLemail.replace("%data%", bio.contact.email);
@@ -117,7 +119,7 @@ if (bio.skills.length > 0) {
 		var formattedSkill = HTMLskills.replace("%data%", bio.skills[i]);
 		$("#skills").append(formattedSkill);
 	}
-}
+};
 
 /** Display WORK **/
 var displayWork = function() {
@@ -158,6 +160,31 @@ projects.display = function() {
 };
 projects.display();
 
+/** Display Education **/
+var displayEducation = function() {
+	$("#education").append(HTMLschoolStart);
+	var formattedSchoolName = HTMLschoolName.replace("%data%", education.schools.name) + HTMLschoolDegree.replace("%data%", education.schools.degree);
+	$(".education-entry:last").append(formattedSchoolName);
+	var formattedSchoolDates = HTMLschoolDates.replace("%data%", education.schools.dates);
+	$(".education-entry:last").append(formattedSchoolDates);
+	var formattedSchoolLocation = HTMLschoolLocation.replace("%data%", education.schools.city);
+	$(".education-entry:last").append(formattedSchoolLocation);
+	var formattedSchoolMajor = HTMLschoolMajor.replace("%data%", education.schools.major);
+	$(".education-entry:last").append(formattedSchoolMajor);
+	$("#education").append(HTMLonlineStart);
+	$(".online-entry").append(HTMLonlineClasses);
+	for(i in education.onlineCourses) {
+		var formattedOnlineTitle = HTMLonlineTitle.replace("%data%", education.onlineCourses[i].title) + HTMLonlineSchool.replace("%data%", education.onlineCourses[i].school);
+		var formattedOnlineSchool = HTMLonlineSchool.replace("%data%", education.onlineCourses[i].school);
+		$(".online-entry:last").append(formattedOnlineTitle);
+		var formattedOnlineDates = HTMLonlineDates.replace("%data%", education.onlineCourses[i].dates);
+		$(".online-entry:last").append(formattedOnlineDates);
+		var formattedOnlineURL = HTMLonlineURL.replace("%data%", education.onlineCourses[i].url);
+		$(".online-entry:last").append(formattedOnlineURL);
+
+	};
+};
+displayEducation();
 
 /** Display CLICKS on PAGE with CONSOLE.LOG **/
 $(document).click(function(loc) {
@@ -181,6 +208,19 @@ $("#main").append(internationalizeButton);
 
 /** View Map **/
 $("#mapDiv").append(googleMap);
+
+var displayFooterContacts = function() {
+	formattedMobile = HTMLmobile.replace("%data%", bio.contact.mobile);
+	$("#footerContacts").append(formattedMobile);
+	formattedEmail = HTMLemail.replace("%data%", bio.contact.email);
+	$("#footerContacts").append(formattedEmail);
+	formattedGitHub = HTMLgithub.replace("%data%", bio.contact.github);
+	$("#footerContacts").append(formattedGitHub);
+	formattedLocation = HTMLlocation.replace("%data%", bio.contact.location);
+	$("#footerContacts").append(formattedLocation);
+};
+displayFooterContacts();
+
 
 
 
