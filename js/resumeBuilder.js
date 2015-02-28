@@ -1,7 +1,4 @@
 
-// $("#header").prepend(HTMLheaderRole.replace("%data%", "Web Developer"));
-// $("#header").prepend(HTMLheaderName.replace("%data%", "Daniel Botta"));
-
 /** OBJECTS **/
 var bio = {
 	"name": "Daniel Botta",
@@ -89,7 +86,9 @@ var work = {
 	]
 };
 
-var displayBio = function() {
+var footer = {};
+
+bio.display = function() {
 		formattedRole = HTMLheaderRole.replace("%data%", bio.role);
 		$("#header").prepend(formattedRole);
 		formattedName = HTMLheaderName.replace("%data%", bio.name);
@@ -107,7 +106,7 @@ var displayBio = function() {
 		formattedPic = HTMLbioPic.replace("%data%", bio.bioPic);
 		$("#header").append(formattedPic);
 };
-displayBio();
+bio.display();
 
 
 
@@ -122,7 +121,7 @@ if (bio.skills.length > 0) {
 };
 
 /** Display WORK **/
-var displayWork = function() {
+work.display = function() {
 	if (work.jobs.length > 0) {
 		for (job in work.jobs) {
 			$("#workExperience").append(HTMLworkStart);
@@ -140,7 +139,7 @@ var displayWork = function() {
 		}; 
 	};
 };
-displayWork();
+work.display();
 
 /** Displaying Projects by Encapsulating Functions **/
 projects.display = function() {
@@ -161,7 +160,7 @@ projects.display = function() {
 projects.display();
 
 /** Display Education **/
-var displayEducation = function() {
+education.display = function() {
 	$("#education").append(HTMLschoolStart);
 	var formattedSchoolName = HTMLschoolName.replace("%data%", education.schools.name) + HTMLschoolDegree.replace("%data%", education.schools.degree);
 	$(".education-entry:last").append(formattedSchoolName);
@@ -184,7 +183,7 @@ var displayEducation = function() {
 
 	};
 };
-displayEducation();
+education.display();
 
 /** Display CLICKS on PAGE with CONSOLE.LOG **/
 $(document).click(function(loc) {
@@ -209,7 +208,7 @@ $("#main").append(internationalizeButton);
 /** View Map **/
 $("#mapDiv").append(googleMap);
 
-var displayFooterContacts = function() {
+footer.display = function() {
 	formattedMobile = HTMLmobile.replace("%data%", bio.contact.mobile);
 	$("#footerContacts").append(formattedMobile);
 	formattedEmail = HTMLemail.replace("%data%", bio.contact.email);
@@ -219,7 +218,7 @@ var displayFooterContacts = function() {
 	formattedLocation = HTMLlocation.replace("%data%", bio.contact.location);
 	$("#footerContacts").append(formattedLocation);
 };
-displayFooterContacts();
+footer.display();
 
 
 
